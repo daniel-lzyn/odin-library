@@ -1,3 +1,5 @@
+const main_container  = document.querySelector('main');
+
 const myLibrary = [];
 
 function Book(id, title, author, totalPages, readStatus) {
@@ -66,4 +68,9 @@ function createBookCard(bookObject) {
 
     // Append all
     cardContainter.append(title, bookInfoContainer, btnContainer);
+    main_container.appendChild(cardContainter);
+}
+
+for(let i = 0; i < myLibrary.length; i++) {
+    createBookCard(myLibrary[i]);
 }
