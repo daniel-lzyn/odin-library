@@ -101,24 +101,37 @@ addBookForm.addEventListener('submit', (e)=> {
     const bookTotalPages = document.querySelector('#total_pages');
     const bookStatus = document.querySelector('input[name="read_status"]:checked')
 
-    // addBookToLibrary(title, author, totalPages, readStatus)
-    addBookToLibrary(bookTitle.value, bookAuthor.value, bookTotalPages.value, bookStatus.value);
+    // Checking duplicate
+    const duplicateTitle = myLibrary.findIndex(book => book.title === bookTitle.value);
+    const duplicateAuthor = myLibrary.findIndex(book => book.author === bookAuthor.value);
+
+    if(duplicateTitle >= 0 && duplicateAuthor >= 0) {
+        alert("This book has been added to the library.");
+    } else {
+        // addBookToLibrary(title, author, totalPages, readStatus)
+        addBookToLibrary(bookTitle.value, bookAuthor.value, bookTotalPages.value, bookStatus.value);
+    };
+    
+    bookTitle.value = "";
+    bookAuthor.value = "";
+    bookTotalPages.value = "";
+    bookStatus.value = "";
     refreshLibrary();
 });
 
 mainContainer.addEventListener('click', (e)=> {
     if(e.target.classList.contains('status_btn')) {
         const bookId = e.target.parentNode.parentNode.id;
-        const bookIndex = myLibrary.findIndex(book => book.id === bookId)
+        const bookIndex = myLibrary.findIndex(book => book.id === bookId);
         if(myLibrary[bookIndex].readStatus === "plan to read") {
             myLibrary[bookIndex].readStatus = "completed";
         } else if (myLibrary[bookIndex].readStatus === "completed") {
             myLibrary[bookIndex].readStatus = "plan to read";
-        }
+        };
     } else if(e.target.classList.contains('delete_btn')) {
         const bookId = e.target.parentNode.parentNode.id;
         const bookIndex = myLibrary.findIndex(book => book.id === bookId);
-        myLibrary.splice(bookIndex, 1)
-    }
+        myLibrary.splice(bookIndex, 1);
+    };
     refreshLibrary();
 });
