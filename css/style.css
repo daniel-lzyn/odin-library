@@ -156,3 +156,7 @@ main > div > div {
     color: hsl(0, 0%, 80%);
     cursor: pointer;
 }
+
+.invisible {
+    display: none;
+}
