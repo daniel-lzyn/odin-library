@@ -104,6 +104,20 @@ main > div > div {
     border-radius: 10px;
 }
 
+.add_book_popup div:first-child {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.add_book_popup svg {
+    width: 30px;
+}
+
+.add_book_popup svg:hover {
+    cursor: pointer;
+}
+
 .input_book_form {
     display: flex;
     flex-direction: column;
