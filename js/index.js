@@ -120,5 +120,5 @@ mainContainer.addEventListener('click', (e)=> {
         const bookIndex = myLibrary.findIndex(book => book.id === bookId);
         myLibrary.splice(bookIndex, 1)
     }
-    refreshLibrary()
+    refreshLibrary();
 });
