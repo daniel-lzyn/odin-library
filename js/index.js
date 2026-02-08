@@ -110,9 +110,9 @@ mainContainer.addEventListener('click', (e)=> {
     if(e.target.classList.contains('status_btn')) {
         const bookId = e.target.parentNode.parentNode.id;
         const bookIndex = myLibrary.findIndex(book => book.id === bookId)
-        if(myLibrary[bookIndex].id === bookId && myLibrary[bookIndex].readStatus === "plan to read") {
+        if(myLibrary[bookIndex].readStatus === "plan to read") {
             myLibrary[bookIndex].readStatus = "completed";
-        } else if (myLibrary[bookIndex].id === bookId && myLibrary[bookIndex].readStatus === "completed") {
+        } else if (myLibrary[bookIndex].readStatus === "completed") {
             myLibrary[bookIndex].readStatus = "plan to read";
         }
     } else if(e.target.classList.contains('delete_btn')) {
