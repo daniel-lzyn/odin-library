@@ -109,13 +109,12 @@ addBookForm.addEventListener('submit', (e)=> {
 mainContainer.addEventListener('click', (e)=> {
     if(e.target.classList.contains('status_btn')) {
         const bookId = e.target.parentNode.parentNode.id;
-        for(let i = 0; i < myLibrary.length; i++) {
-            if(myLibrary[i].id === bookId && myLibrary[i].readStatus === "plan to read") {
-                myLibrary[i].readStatus = "completed";
-            } else if (myLibrary[i].id === bookId && myLibrary[i].readStatus === "completed") {
-                myLibrary[i].readStatus = "plan to read";
-            }
-        };
+        const bookIndex = myLibrary.findIndex(book => book.id === bookId)
+        if(myLibrary[bookIndex].id === bookId && myLibrary[bookIndex].readStatus === "plan to read") {
+            myLibrary[bookIndex].readStatus = "completed";
+        } else if (myLibrary[bookIndex].id === bookId && myLibrary[bookIndex].readStatus === "completed") {
+            myLibrary[bookIndex].readStatus = "plan to read";
+        }
     } else if(e.target.classList.contains('delete_btn')) {
         const bookId = e.target.parentNode.parentNode.id;
         const bookIndex = myLibrary.findIndex(book => book.id === bookId);
