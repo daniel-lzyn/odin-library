@@ -27,12 +27,10 @@ function refreshLibrary() {
     };
 };
 
-addBookToLibrary("Makanya, Mikir!", "Abigail Limuria", 295, false)
-console.log(myLibrary)
-
 function createBookCard(bookObject) {
     // card container
     const cardContainter = document.createElement('div');
+    cardContainter.id = bookObject.id;
 
     // book title
     const title = document.createElement('h2');
@@ -106,4 +104,22 @@ addBookForm.addEventListener('submit', (e)=> {
     // addBookToLibrary(title, author, totalPages, readStatus)
     addBookToLibrary(bookTitle.value, bookAuthor.value, bookTotalPages.value, bookStatus.value);
     refreshLibrary();
+});
+
+mainContainer.addEventListener('click', (e)=> {
+    if(e.target.classList.contains('status_btn')) {
+        const bookId = e.target.parentNode.parentNode.id;
+        for(let i = 0; i < myLibrary.length; i++) {
+            if(myLibrary[i].id === bookId && myLibrary[i].readStatus === "plan to read") {
+                myLibrary[i].readStatus = "completed";
+            } else if (myLibrary[i].id === bookId && myLibrary[i].readStatus === "completed") {
+                myLibrary[i].readStatus = "plan to read";
+            }
+        };
+    } else if(e.target.classList.contains('delete_btn')) {
+        const bookId = e.target.parentNode.parentNode.id;
+        const bookIndex = myLibrary.findIndex(book => book.id === bookId);
+        myLibrary.splice(bookIndex, 1)
+    }
+    refreshLibrary()
 });
