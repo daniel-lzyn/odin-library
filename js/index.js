@@ -1,4 +1,8 @@
-const main_container  = document.querySelector('main');
+const mainContainer  = document.querySelector('main');
+const addBookBtn = document.querySelector('#add_book_btn');
+const addBookPopup = document.querySelector('.add_book_popup');
+const popupCloseBtn = document.querySelector('#popup_close_btn');
+const addBookForm = document.querySelector('.input_book_form');
 
 const myLibrary = [];
 
@@ -14,6 +18,14 @@ function addBookToLibrary(title, author, totalPages, readStatus) {
     const book = new Book(crypto.randomUUID(), title, author, totalPages, readStatus)
     myLibrary.push(book);
 }
+
+
+function refreshLibrary() {
+    mainContainer.innerHTML = "";
+    for(let i = 0; i < myLibrary.length; i++) {
+        createBookCard(myLibrary[i]);
+    };
+};
 
 addBookToLibrary("Makanya, Mikir!", "Abigail Limuria", 295, false)
 console.log(myLibrary)
@@ -68,9 +80,30 @@ function createBookCard(bookObject) {
 
     // Append all
     cardContainter.append(title, bookInfoContainer, btnContainer);
-    main_container.appendChild(cardContainter);
+    mainContainer.appendChild(cardContainter);
 }
 
-for(let i = 0; i < myLibrary.length; i++) {
-    createBookCard(myLibrary[i]);
-}
+addBookBtn.addEventListener('click', ()=> {
+    if(addBookPopup.classList.contains('invisible')) {
+        addBookPopup.classList.remove('invisible');
+    } else if(!addBookPopup.classList.contains('invisible')) {
+        addBookPopup.classList.add('invisible');
+    };
+});
+
+popupCloseBtn.addEventListener('click', ()=> {
+    addBookPopup.classList.add('invisible');
+});
+
+addBookForm.addEventListener('submit', (e)=> {
+    e.preventDefault();
+
+    const bookTitle = document.querySelector('#title');
+    const bookAuthor = document.querySelector('#author');
+    const bookTotalPages = document.querySelector('#total_pages');
+    const bookStatus = document.querySelector('input[name="read_status"]:checked')
+
+    // addBookToLibrary(title, author, totalPages, readStatus)
+    addBookToLibrary(bookTitle.value, bookAuthor.value, bookTotalPages.value, bookStatus.value);
+    refreshLibrary();
+});
