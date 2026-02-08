@@ -15,7 +15,7 @@
         </nav>
     </header>
     <main>
-        <div>
+        <!-- <div>
             <h2>Makanya, Mikir!</h1>
             <div class="book-info">
                 <p>Author:</p>
@@ -29,7 +29,30 @@
                 <button class="status_btn">Change Status</button>
                 <button class="delete_btn">Delete</button>
             </div>
-        </div>
+        </div> -->
     </main>
+    <dialog open class="add_book_popup">
+        <h2>Add a Book to Library</h2>
+        <form action="/" class="input_book_form">
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title">
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author">
+            <label for="total_pages">Total Pages:</label>
+            <input type="number" name="total_pages" id="total_pages">
+            <fieldset>
+                <legend>Status:</legend>
+                <div>
+                    <input type="radio" id="plan_to_read" name="read_status" value="plan to read">
+                    <label for="plan_to_read">Plan to read</label>
+                </div>
+                <div>
+                    <input type="radio" id="completed" name="read_status" value="completed">
+                    <label for="completed">Completed</label>
+                </div>
+            </fieldset>
+            <button type="submit">Add Book</button>
+        </form>
+    </dialog>
 </body>
 </html>
