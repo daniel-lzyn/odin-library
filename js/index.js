@@ -16,14 +16,6 @@ class Book {
     };
 };
 
-// function Book(id, title, author, totalPages, readStatus) {
-//     this.id = id;
-//     this.title = title;
-//     this.author = author;
-//     this.totalPages = totalPages;
-//     this.readStatus = readStatus;
-// }
-
 function addBookToLibrary(title, author, totalPages, readStatus) {
     const book = new Book(crypto.randomUUID(), title, author, totalPages, readStatus)
     myLibrary.push(book);
@@ -31,7 +23,7 @@ function addBookToLibrary(title, author, totalPages, readStatus) {
 
 
 function refreshLibrary() {
-    mainContainer.innerHTML = "";
+    mainContainer.replaceChildren();
     for(let i = 0; i < myLibrary.length; i++) {
         createBookCard(myLibrary[i]);
     };
